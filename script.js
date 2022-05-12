@@ -260,7 +260,7 @@ const cards = [
     number: "()",
   },
 ];
-const jokerCard = {cod:"Joker", number:"X"}
+const jokerCard = { cod: "Joker", number: "X" }
 var joker = document.getElementById("joker");
 var pile = document.getElementById("game");
 var scramble = new Array();
@@ -278,6 +278,9 @@ var lastColor = "";
 var lastNumber;
 
 var validation = false;
+
+var turn = 1;
+
 start();
 function start() {
   var n = Math.floor(Math.random() * cards.length);
@@ -307,7 +310,7 @@ function start() {
   makeScramble();
 }
 
-function specialCard(typeCard, U) {
+function specialCard(typeCard, U ,player) {
   var circleMainBlock = `<div class="circleBlock"><div class="diagonal"></div></div>`;
   var circleUBlock = `<div class="circleUDBlock"><div class="diagonal"></div></div>`;
   var circleDBlock = `<div class="circleUDBlock"><div class="diagonal"></div></div>`;
@@ -328,6 +331,12 @@ function specialCard(typeCard, U) {
   }
 
   if (typeCard == "@") {
+    if (player == 1) {
+      turn = 1
+    }
+    if (player == 2) {
+      turn = 2
+    }
     if (U == "u") {
       return circleUBlock;
     }
@@ -374,7 +383,7 @@ function addFourCards(player, id) {
       }
     }
   }
-chooseColor("#0f0f0f" , true , 2 )
+  chooseColor("#0f0f0f", true, 2)
 
 }
 function addTwoCards(player, id) {
@@ -401,77 +410,90 @@ function addTwoCards(player, id) {
 function playCard(scram, id, player) {
   validation = false;
 
-  if (verificationCard(scram) == true) {
-    lastColor = cards[scram].color;
-    lastNumber = cards[scram].number;
+  if (player == turn) {
 
-    for (let i = 0; i < game.length; i++) {
-      if (game[i] == null) {
-        game[i] = scram;
+
+    if (verificationCard(scram) == true) {
+      if (player == 1) {
+        turn = 2
       }
-
-      if (cards[scram].number == "()") {
-        chooseColor("#0f0f0f", true, scram);
+      if (player == 2) {
+        turn = 1
       }
+      lastColor = cards[scram].color;
+      lastNumber = cards[scram].number;
 
-      if (cards[scram].number == "M4") {
-        if (player == 1) {
-          alert("+4 cartas para p2");
-          addFourCards(1, id);
+      for (let i = 0; i < game.length; i++) {
+        if (game[i] == null) {
+          game[i] = scram;
         }
-        if (player == 2) {
-          alert("+4 cartas para p1");
-          addFourCards(2, id);
-        }
-      }
 
-      if (cards[scram].number == "M2") {
-        if (player == 1) {
-          alert("+2 cartas para p2");
-          addTwoCards(1, id);
+        if (cards[scram].number == "()") {
+          chooseColor("#0f0f0f", true, scram);
         }
-        if (player == 2) {
-          alert("+2 cartas para p1");
-          addTwoCards(2, id);
-        }
-      }
 
-      pile.innerHTML = `
-          <div  style="background-color:${
-            cards[scram].color
+        if (cards[scram].number == "M4") {
+          if (player == 1) {
+            alert("+4 cartas para p2");
+            addFourCards(1, id);
+          }
+          if (player == 2) {
+            alert("+4 cartas para p1");
+            addFourCards(2, id);
+          }
+        }
+
+        if (cards[scram].number == "M2") {
+          if (player == 1) {
+            alert("+2 cartas para p2");
+            addTwoCards(1, id);
+          }
+          if (player == 2) {
+            alert("+2 cartas para p1");
+            addTwoCards(2, id);
+          }
+        }
+
+        pile.innerHTML = `
+          <div  style="background-color:${cards[scram].color
           };" class="card" id="${i}" > 
           <div class="cornerUpDiv">
           <span id="cornerUp">${specialCard(
             cards[scram].number,
-            "u"
+            "u",player
           )}</span> </div> <span>${specialCard(
-        cards[scram].number,
-        "m"
-      )}</span> 
+            cards[scram].number,
+            "m",player
+          )}</span> 
           <div class="cornerDownDiv">
           <span id="cornerDown">${specialCard(
             cards[scram].number,
-            "d"
+            "d",player
           )}</span></div> 
           </div> `;
 
-      if (player == 1) {
-        scramble.splice(id, 1);
-      }
-      if (player == 2) {
-        scramble2.splice(id, 1);
-      }
+        if (player == 1) {
+          scramble.splice(id, 1);
+        }
+        if (player == 2) {
+          scramble2.splice(id, 1);
+        }
 
-      break;
+        break;
+      }
     }
+
   }
 
+
+
+  console.log("turno: " + turn)
   showDecks();
 }
 
 function verificationCard(scram) {
   console.log(cards[scram].color);
-  console.log(cards[scram].number);
+  console.log(cards[scram].cod);
 
   if (cards[scram].color == lastColor) {
     console.log("True color");
@@ -504,7 +526,7 @@ function chooseColor(color, cOrca, scram) {
   }
 
 
-console.log("Cor do joker" + lastColor);
+  console.log("Cor do joker" + lastColor);
 
   pile.innerHTML = `
   <div  style="background-color:${color};" class="card"  > 
@@ -527,43 +549,64 @@ function showDecks() {
   lista.innerHTML = "";
   for (let i = 0; i < scramble2.length; i++) {
     lista2.innerHTML += `<li class="list">
-    <div  style="background-color:${
-      cards[scramble2[i]].color
-    };" class="card" id="${i}" onClick="playCard(${scramble2[i]} , ${i} , 2)"> 
+    <div  style="background-color:${cards[scramble2[i]].color
+      };" class="card" id="${i}" onClick="playCard(${scramble2[i]} , ${i} , 2)"> 
     <div class="cornerUpDiv">
     <span id="cornerUp">${specialCard(
-      cards[scramble2[i]].number,
-      "u"
-    )}</span> </div> <span> ${specialCard(
-      cards[scramble2[i]].number,
-      "m"
-    )}</span> 
+        cards[scramble2[i]].number,
+        "u"
+      )}</span> </div> <span> ${specialCard(
+        cards[scramble2[i]].number,
+        "m"
+      )}</span> 
     <div class="cornerDownDiv">
     <span id="cornerDown">${specialCard(
-      cards[scramble2[i]].number,
-      "d"
-    )}</span></div> 
+        cards[scramble2[i]].number,
+        "d"
+      )}</span></div> 
     </div></li>`;
   }
 
   for (let i = 0; i < scramble.length; i++) {
     lista.innerHTML += `<li class="list">
-    <div  style="background-color:${
-      cards[scramble[i]].color
-    };" class="card" id="${i}" onClick="playCard(${scramble[i]} , ${i}, 1)"> 
+    <div  style="background-color:${cards[scramble[i]].color
+      };" class="card" id="${i}" onClick="playCard(${scramble[i]} , ${i}, 1)"> 
     <div class="cornerUpDiv">
     <span id="cornerUp">${specialCard(
-      cards[scramble[i]].number,
-      "u"
-    )}</span> </div> <span> ${specialCard(
-      cards[scramble[i]].number,
-      "m"
-    )}</span> 
+        cards[scramble[i]].number,
+        "u"
+      )}</span> </div> <span> ${specialCard(
+        cards[scramble[i]].number,
+        "m"
+      )}</span> 
     <div class="cornerDownDiv">
     <span id="cornerDown">${specialCard(
-      cards[scramble[i]].number,
-      "d"
-    )}</span></div> 
+        cards[scramble[i]].number,
+        "d"
+      )}</span></div> 
     </div> </li>`;
   }
+}
+
+function push() {
+  if (turn == 1) {
+
+     scramble.length = scramble.length + 1;
+  for (let i = 0; i < scramble.length; i++) {
+    if (scramble[i] == null) {
+      scramble[i] = Math.floor(Math.random() * cards.length);
+    }
+  }
+  }
+  if (turn == 2) {
+   
+    scramble2.length = scramble2.length + 1;
+ for (let i = 0; i < scramble2.length; i++) {
+   if (scramble2[i] == null) {
+     scramble2[i] = Math.floor(Math.random() * cards.length);
+   }
+  }
+
+ }
+ showDecks();
 }

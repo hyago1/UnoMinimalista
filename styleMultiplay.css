@@ -1,0 +1,40 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0;
+  height: 100vh;
+  background-color: rgb(17, 17, 17);
+}
+.boxMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgb(126, 126, 126);
+  width: auto;
+  height: auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+.btnsCaCr {
+}
+span {
+  color: rgb(182, 182, 182);
+  margin: 10px;
+}
+
+input{
+  width: 90%;
+    margin: 5px;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+}
+.inputs{
+  margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}

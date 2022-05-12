@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="styleGame.css" />
+    <title>Uno Minimalista</title>
+  </head>
+  <body>
+    <div class="push" onClick="push()">
+      Push
+    </div>
+    <div class="decks">
+      <div class="ulDeck">
+        <ul id="lista"></ul>
+      </div>
+      <ul id="game"></ul>
+      <div class="ulDeck">
+         <ul id="lista2"></ul>
+      </div>
+     
+    </div>
+        <div id="joker" class="joker">
+            <div class="u">
+                <div id="y" onClick="chooseColor('#f7f01e',false, 50)" class="Yellow"></div>
+                <div id="g"onClick="chooseColor('#67bd42',false, 50)" class="Green"></div>
+            </div>
+            <div class="d">
+                <div id="b" onClick="chooseColor('#133fc2',false, 50)" class="Blue"></div>
+                <div id="r" onClick="chooseColor('#d60b11',false, 50)" class="Red"></div>
+            </div>
+        </div>
+ 
+    <script src="./script.js"></script>       
+
+  </body>
+</html>

@@ -1,0 +1,210 @@
+body {
+  background-color: rgb(20, 20, 20);
+}
+ul {
+  display: flex;
+  margin: 35px;
+  color: rgb(255, 255, 255);
+  height: auto;
+}
+.list {
+  margin: 2px;
+  display: flex;
+}
+.game {
+
+  display: flex;
+}
+
+.card {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  cursor: pointer;
+  padding-right: 2px;
+  width: 80px;
+  height: 120px;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 8px;
+  font-size: 25px;
+}
+
+.card:hover {
+  transition-duration: 500ms;
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+}
+.push{
+  -webkit-touch-callout: none;  /* iPhone OS, Safari */
+  -webkit-user-select: none;    /* Chrome, Safari 3 */
+  -khtml-user-select: none;     /* Safari 2 */
+  -moz-user-select: none;       /* Firefox */
+  -ms-user-select: none;        /* IE10+ */
+  user-select: none; 
+  cursor: pointer;
+    margin: 10px;
+    position:absolute;
+    background-color: rgb(36, 36, 36);
+    font-family: "Plus Jakarta Sans", sans-serif;
+    cursor: pointer;
+    padding-right: 2px;
+    width: 80px;
+    height: 120px;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 8px;
+    font-size: 25px;
+  }
+  .push:hover {
+    transition-duration: 400ms;
+
+    transform: scale(1.1);
+  }
+#cornerDown {
+  font-size: 8px;
+  float: right;
+  right: 0px;
+}
+.cornerDownDiv {
+  padding-right: 10px;
+  width: 100%;
+  text-align: right;
+}
+.cornerUpDiv {
+  padding-left: 10px;
+  width: 100%;
+  text-align: left;
+}
+#cornerUp {
+  font-size: 8px;
+  float: left;
+  right: 0px;
+}
+ul {
+  margin: 50px;
+}
+.decks {
+  -webkit-touch-callout: none;  /* iPhone OS, Safari */
+  -webkit-user-select: none;    /* Chrome, Safari 3 */
+  -khtml-user-select: none;     /* Safari 2 */
+  -moz-user-select: none;       /* Firefox */
+  -ms-user-select: none;        /* IE10+ */
+  user-select: none; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 90vh;
+}
+.joker{
+  visibility: hidden;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.Yellow:hover, .Green:hover, .Blue:hover, .Red:hover  {
+  transition-duration: 500ms;
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+}
+.Yellow , .Green, .Blue , .Red{
+  border: 1px solid white;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 2px;
+  cursor: pointer;
+}
+.Yellow{
+  background-color: yellow;
+
+}
+.Green{
+  background-color: green;
+
+}
+.Blue{
+  background-color: blue;
+  
+
+}
+.Red{
+  background-color: red;
+
+}
+.u{
+  display: flex;
+}
+.d{
+  display: flex;
+}
+.circle{
+  transform: rotate(45deg);
+    width: 30px;
+    height: 30px;
+    border-left: 1px  solid yellow;
+    border-top:1px solid green;
+    border-right:1px solid red;
+    border-bottom: 1px solid rgb(0, 60, 255);
+    border-radius: 50%;
+}
+.circleUD{
+  transform: rotate(45deg);
+  border-left: 1px  solid yellow;
+  border-top:1px solid green;
+  border-right:1px solid red;
+  border-bottom: 1px solid rgb(0, 60, 255);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.circleBlock{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+.circleUDBlock{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  border: 1px solid rgb(255, 255, 255);
+}
+.diagonal{
+  background-color: aliceblue;
+  transform: rotate(45deg);
+
+  border: 0.5px solid rgb(255, 255, 255); 
+  height: 100%;
+}
+
+.ulDeck{
+  
+  align-items: flex-start;
+  overflow-x:auto;
+  overflow-y:hidden ;
+  max-width: 80%;
+}::-webkit-scrollbar {
+  width: 5px;
+  background-color: #77777744;
+}
