@@ -590,6 +590,7 @@ function showDecks() {
   document.getElementById("lista").lastChild.scrollIntoView();
 }
 
+
 function push() {
   if (turn == 1) {
 
