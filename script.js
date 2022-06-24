@@ -586,6 +586,8 @@ function showDecks() {
       )}</span></div> 
     </div> </li>`;
   }
+  document.getElementById("lista2").lastChild.scrollIntoView();
+  document.getElementById("lista").lastChild.scrollIntoView();
 }
 
 function push() {
