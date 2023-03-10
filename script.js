@@ -549,8 +549,8 @@ function showDecks() {
   lista.innerHTML = "";
   for (let i = 0; i < scramble2.length; i++) {
     lista2.innerHTML += `<li class="list">
-    <div  style="background-color:${cards[scramble2[i]].color
-      };" class="card" id="${i}" onClick="playCard(${scramble2[i]} , ${i} , 2)"> 
+    <div draggable="true"  style="background-color:${cards[scramble2[i]].color
+      };" class="card" id="${i}" ondragend="playCard(${scramble2[i]} , ${i} , 2)"> 
     <div class="cornerUpDiv">
     <span id="cornerUp">${specialCard(
         cards[scramble2[i]].number,
@@ -565,12 +565,12 @@ function showDecks() {
         "d"
       )}</span></div> 
     </div></li>`;
-  }
+  } 
 
   for (let i = 0; i < scramble.length; i++) {
     lista.innerHTML += `<li class="list">
-    <div  style="background-color:${cards[scramble[i]].color
-      };" class="card" id="${i}" onClick="playCard(${scramble[i]} , ${i}, 1)"> 
+    <div  draggable="true"  style="background-color:${cards[scramble[i]].color
+      };" class="card" id="${i}" ondragend="playCard(${scramble[i]} , ${i}, 1)"> 
     <div class="cornerUpDiv">
     <span id="cornerUp">${specialCard(
         cards[scramble[i]].number,
