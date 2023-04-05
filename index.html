@@ -1,22 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200&display=swap"
-      rel="stylesheet"
-    />
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styleIndex.css">
-    <title>Uno Minimalista</title>
+    <title>Document</title>
+    <script src="./index.js"></script>
 </head>
 <body>
-    <div class="btns">
-      <a href="game.html"><input  type="button" value="Play" > </a>  
-        <a href="Multiplayer.html"><input type="button" value="Multiplayer">
-    </div></a>
+    <h1>teste</h1>
+    <input type="text"  id="name" placeholder="nome"><br>
+    <input type="text" id="msg" placeholder="mensagem"><br>
+    <input type="button" id="data" onclick="enviar()" value="enviar">
+
+    <ul id="usersList">
+        
+    </ul>
+    <ul id="n">
+        
+    </ul>
+
+    <script src="/socket.io/socket.io.js"></script>
+<script>
+var user = document.getElementById('name');
+  var socket = io();
+  function enviar() {
+    if(user.value){
+  socket.emit('name',user.value)
+  }
+  }
+  
+
+
+  socket.on('user' ,(u) =>{
+    var usersList = document.getElementById('usersList');
+    console.log(JSON.stringify(u));
+    usersList.innerHTML += `<li> O usuario ${u} entrou;</li>`;
+  })
+
+</script>
 </body>
 </html>
